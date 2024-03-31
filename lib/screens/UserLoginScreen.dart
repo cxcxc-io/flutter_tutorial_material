@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tutorial_matrial/components/CommonDrawerComponent.dart';
+import 'package:flutter_tutorial_matrial/daos/UserDao.dart'; // 引入 UserDao
+import 'package:provider/provider.dart';
+
+import '../models/User.dart'; // 引入 User 模型
 
 class UserLoginScreen extends StatefulWidget {
   @override
@@ -9,7 +13,7 @@ class UserLoginScreen extends StatefulWidget {
 class _UserLoginScreenState extends State<UserLoginScreen> {
   late TextEditingController _emailController;
 
-  String userEmail = '';
+  User? user;
 
   @override
   void initState() {
@@ -25,6 +29,9 @@ class _UserLoginScreenState extends State<UserLoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // 添加一條Log以顯示已進入build方法
+    print('進入 build 方法');
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Email Input'),
@@ -49,13 +56,17 @@ class _UserLoginScreenState extends State<UserLoginScreen> {
                 if (email.isNotEmpty && email.contains('@')) {
                   // 邮箱有效，进行下一步操作（例如导航到下一个页面）
                   print('Valid email: $email');
-                  // 这里可以添加导航逻辑，例如 Navigator.push...
+
+                  // 在進行下一步操作之前，建立用戶對象並將其存儲到Provider中
                   setState(() {
-                    userEmail = email;
+                    user = User(email);
+                    context.read<UserDao>().writeUser(user!);
                   });
+
+                  // 導航到下一個頁面（userinfo）
                   Navigator.pushNamed(context, '/userinfo');
                 } else {
-                  // 邮箱无效，显示错误提示
+                  // 邮箱無效，顯示錯誤提示
                   print('Invalid email: $email');
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(

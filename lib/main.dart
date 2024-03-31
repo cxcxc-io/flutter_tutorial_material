@@ -1,49 +1,40 @@
 import 'package:flutter/material.dart';
-import 'controllers/UserController.dart';
-
-
+import 'package:provider/provider.dart';
+import 'controllers/UserController.dart'; // 引入 UserController
+import 'daos/UserDao.dart'; // 引入 UserDao
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => UserDao()), // 使用 Provider 管理 UserDao
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
-
+    // 添加一條Log以顯示已進入 build 方法
+    print('進入 build 方法');
 
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       routes: {
-        '/': (context) => UserController.userLoginScreen(),
-        '/userinfo':(context)=> UserController.userInfoScreen(),
-        '/usernote':(context)=> UserController.userNoteScreen()
+        // 定義路由表
+        '/': (context) => UserController.userLoginScreen(), // 跳轉到用戶登錄頁面
+        '/userinfo': (context) => UserController.userInfoScreen(), // 跳轉到用戶資訊頁面
+        '/usernote': (context) => UserController.userNoteScreen() // 跳轉到用戶筆記頁面
       },
-      initialRoute: '/',
+      initialRoute: '/', // 初始路由設定為用戶登錄頁面
     );
   }
 }
-
