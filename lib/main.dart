@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tutorial_matrial/screens/UserNoteScreen.dart';
+import 'controllers/UserController.dart';
+
+
 
 void main() {
   runApp(const MyApp());
@@ -11,6 +13,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
+
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -32,7 +37,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  UserNoteScreen(),
+      routes: {
+        '/': (context) => UserController.userLoginScreen(),
+        '/userinfo':(context)=> UserController.userInfoScreen(),
+        '/usernote':(context)=> UserController.userNoteScreen()
+      },
+      initialRoute: '/',
     );
   }
 }

@@ -4,11 +4,31 @@ for cxcxc student practice.
 
 ## Getting Started
 
-這是一個Todo List， 同學們要觀看的時候，得先暸解各種分層結構設計，詳見課程
+這是多頁面無狀態管理的初始內容， 多頁面設計， 也是多頁面狀態管理的入門
 
-建議大家先畫一張設計圖，然後再讀models，自己手打一遍，培養語感。 寫註解之後，可傳給GPT，協助確認。
+todolist 這個項目，多了兩個頁面， 當用戶要使用的時候，必須經過登入頁，登入之後，有用戶資訊頁，這個頁面應該要看到用戶剛剛註冊的email，另外還有先前製作的todolist管理畫面
 
-依序讀 models, daos, services, components, screens, controllers,  main
+每個頁面都需要有側邊欄，可供跳轉到其他頁面
 
-每一層的功效不同，在後續的課程，我們會逐步追加功能，這時候大家就能發現拆成多層的好處了。
+### 實踐方式
 
+#### 先把路徑導向順序完成，使開發的時候，可以轉導向到各頁面觀看成果
+
+先在screens內追加兩個空的screen, UserInfoScreen,  UserLoginScreen
+
+再回到controllers的UserController，設置四個方法 checkUserLogin, userInfoScreen, userLoginScreen, userNoteScreen， 未來持續在這裡對用戶的訪問做驗證與過濾
+
+再回到main.dart，設定路由 
+
+另外在components內設定 一個CommonDrawerComponent, 用來做側邊欄，並在裡面的按鍵，設定切換頁面
+
+
+#### screen內容填補
+
+UserLoginScreen， 讓用戶可輸入email做登入，並將email存在其登入頁面中。
+
+UserInfoScreen ，讀取用戶剛剛輸入的email，做畫面渲染
+
+#### UserController內容填補
+
+為controller分別設定導流到四個頁面的方法

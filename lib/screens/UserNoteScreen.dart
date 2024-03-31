@@ -3,6 +3,8 @@ import '../models/Todo.dart';
 import '../services/UserNoteService.dart';
 import '../components/TodoCheckComponent.dart'; // 导入 TodoCheckComponent 组件
 
+import '../components/CommonDrawerComponent.dart';
+
 class UserNoteScreen extends StatefulWidget {
   String? deviceType;
 
@@ -46,6 +48,8 @@ class _UserNoteScreenState extends State<UserNoteScreen> {
       appBar: AppBar(
         title: Text('使用者筆記'),
       ),
+      // 側邊欄Demo
+      drawer: CommonDrawerComponent(),
       body: Container(
         padding: EdgeInsets.all(16.0),
         child: Column(
