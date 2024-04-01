@@ -20,7 +20,7 @@ class UserNoteService {
   Future<void> writeTodoAndDoMore(Todo todo) async {
 
     // 一個好的記事表，會在用戶寫入todo之後，觸發一連串的反應，以後在這裡可能會調度其他外部系統，或是寄發email給相關用戶
-    String note = 'Todo: ${todo.title}, isCompleted: ${todo.isCompleted()}';
+    String note = 'Todo: ${todo.title}, isCompleted: ${todo.isCompleted}';
     print('已將待辦事項紀錄到筆記中: $note');
 
     await _todoDao.writeTodo(todo);
@@ -29,7 +29,7 @@ class UserNoteService {
   Future<void> removeTodoAndDoMore(Todo todo) async{
 
     // 一個好的記事表，會在用戶寫入todo之後，觸發一連串的反應，以後在這裡可能會調度其他外部系統，或是寄發email給相關用戶
-    String note = 'Todo: ${todo.title}, isCompleted: ${todo.isCompleted()} ';
+    String note = 'Todo: ${todo.title}, isCompleted: ${todo.isCompleted} ';
     print('已將待辦事項從筆記中刪除: $note');
     await _todoDao.removeTodo(todo);
   }

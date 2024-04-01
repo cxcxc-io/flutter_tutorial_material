@@ -6,9 +6,9 @@ class Todo {
 
   // Todo class 的建構子，需要傳入待辦事項的標題，並可選傳入是否已完成的狀態（預設為未完成）
   Todo(
-    this.title,
-    this._isCompleted
-  );
+      this.title,
+      this._isCompleted
+      );
 
   // 對私有變數 _isComplete 取得狀態
   bool isCompleted(){

@@ -3,7 +3,8 @@ import 'package:provider/provider.dart';
 import 'controllers/UserController.dart'; // 引入 UserController
 import 'daos/UserDao.dart'; // 引入 UserDao
 
-void main() {
+void main() async {
+
   runApp(
     MultiProvider(
       providers: [
@@ -12,6 +13,7 @@ void main() {
       child: const MyApp(),
     ),
   );
+
 }
 
 class MyApp extends StatelessWidget {

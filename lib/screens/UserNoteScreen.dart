@@ -85,7 +85,7 @@ class _UserNoteScreenState extends State<UserNoteScreen> {
                           },
                           onRemoved: () {
                             setState(() {
-                              _todos.removeAt(index);
+                              _userNoteService.removeTodoAndDoMore(todo);
                             });
                           },
                         );

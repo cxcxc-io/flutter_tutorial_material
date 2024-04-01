@@ -2,16 +2,17 @@
 
 for cxcxc student practice.
 
+## 教材連結
+
+https://docs.google.com/document/d/1YBuQQ19zphFIqXZGQcZDERjwnyrl6sGFrRUeh47pSig/edit
+
 ## Getting Started
 
-多頁面引入 provider 作為 多頁面狀態管理
+多頁面引入 cache 作為 資料緩存，保存資料
 
-先在pubspec.yaml 引入套件 ，在models內建立User類別，並在daos內建立UserDao類別，並為UserDao設置ChangeNotifier與notifyListeners()
+在pubspec 追加share_preference
 
-回到main.dart，為app增加provider，告訴所有頁面可以調度此狀態。
+這時候將會開始感受到分層的妙處， 切換回TodoDao，只需要結合share_preference重新實踐TodoDao 即可
 
-再回到UserLoginScreen，當用戶輸入email後，會去更新provider所追蹤的用戶狀態
-
-再回到UserInfoScreen，將要讀取的用戶資料，改為provider所使用的用戶狀態。
 
 
